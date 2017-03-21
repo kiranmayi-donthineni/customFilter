@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="customFilter">
+<p>Capitalize Filter:</p>
+{{'kiranmayi' | capitalize:6}}
+</body>
+<script>
+    var app = angular.module('customFilter',[]);
+    app.filter('capitalize',function(){
+        return function(input,char){
+            if(isNaN(input)){
+                var char = char-1 || 0;
+                var letter = input.charAt(char).toUpperCase();
+                var out = [];
+                for(i=0;i<input.length;i++){
+                    if(i == char){
+                        out.push(letter);
+                    }else {out.push(input[i]);}
+
+                }
+                return out.join('');
+            }else {return input;}
+        }
+    });
+</script>
+</html>
